@@ -22,10 +22,11 @@
 package zmq;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import zmq.TcpAddress.TcpAddressMask;
+
+import com.kactech.jeromq.KacUtils;
 
 public class Options {
     //  High-water marks for message pipes.
@@ -186,7 +187,7 @@ public class Options {
                 ZError.errno(ZError.EINVAL);
                 return false;
             }
-            identity = Arrays.copyOf(val, val.length);
+            identity = KacUtils.Arrays.copyOf(val, val.length);
             identity_size = (byte)identity.length;
             return true;
             

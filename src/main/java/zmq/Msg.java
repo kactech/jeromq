@@ -22,7 +22,8 @@
 package zmq;
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
+
+import com.kactech.jeromq.KacUtils;
 
 public class Msg {
 
@@ -88,7 +89,7 @@ public class Msg {
         if (src != null) {
             size = src.length;
             if (copy)
-                data = Arrays.copyOf(src, src.length);
+                data = KacUtils.Arrays.copyOf(src, src.length);
             else
                 data = src;
         }

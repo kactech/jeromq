@@ -24,13 +24,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayDeque;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.jeromq.ZMQ.Socket;
+
+import com.kactech.jeromq.ArrayDeque;
+import com.kactech.jeromq.Deque;
 
 /**
  * The ZMsg class provides methods to send and receive multipart messages

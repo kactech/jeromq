@@ -20,9 +20,7 @@
 */
 package zmq;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -31,6 +29,9 @@ import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.kactech.jeromq.ArrayDeque;
+import com.kactech.jeromq.Deque;
 
 //Context object encapsulates all the global state associated with
 //  the library.

@@ -22,13 +22,15 @@ package zmq;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+import com.kactech.jeromq.KacUtils;
+
 public class Blob {
 
     private byte[] buf;
     private int hash = 0;
     
     public Blob(byte[] data_) {
-        buf = Arrays.copyOf(data_, data_.length);
+        buf = KacUtils.Arrays.copyOf(data_, data_.length);
     }
     
     public Blob(int size) {

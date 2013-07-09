@@ -42,6 +42,8 @@ import java.util.regex.Pattern;
 
 import org.jeromq.ZMQ.Msg;
 
+import com.kactech.jeromq.KacUtils;
+
 
 public class ZLog {
 
@@ -110,7 +112,7 @@ public class ZLog {
         
         if (!segments.isEmpty()) {
             start = segments.firstKey();
-            current = segments.lastEntry().getValue();
+            current = KacUtils.lastEntry(segments).getValue();
         }
 
     }
@@ -175,7 +177,7 @@ public class ZLog {
         if (modifiedBefore == EARLIEST) // first
             return new long[] { segments.firstKey() };
         if (modifiedBefore == LATEST) {
-            Map.Entry<Long, Segment> last = segments.lastEntry();
+            Map.Entry<Long, Segment> last = KacUtils.lastEntry(segments);
             return new long [] { last.getKey(), last.getKey() + last.getValue().size() };
         }
         
@@ -269,7 +271,7 @@ public class ZLog {
     
     public List<Msg> readMsg(long start, int max) throws InvalidOffsetException, IOException {
         
-        Map.Entry<Long, Segment> entry = segments.floorEntry(start);
+        Map.Entry<Long, Segment> entry = KacUtils.floorEntry(segments, start);
         List<Msg> results = new ArrayList<Msg>();
         MappedByteBuffer buf;
         Msg msg;
@@ -291,7 +293,7 @@ public class ZLog {
     }
 
     public int read(long start, ByteBuffer dst) throws IOException {
-        Map.Entry<Long, Segment> entry = segments.floorEntry(start);
+        Map.Entry<Long, Segment> entry =KacUtils.floorEntry(segments, start);
         FileChannel ch;
         ch = entry.getValue().getChannel(false);
         ch.position(start - entry.getKey());
@@ -307,7 +309,7 @@ public class ZLog {
      * @throws IOException
      */
     public FileChannel open(long start) throws IOException {
-        Map.Entry<Long, Segment> entry = segments.floorEntry(start);
+        Map.Entry<Long, Segment> entry = KacUtils.floorEntry(segments, start);
         FileChannel ch;
         ch = entry.getValue().getChannel(false);
         ch.position(start - entry.getKey());

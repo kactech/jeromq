@@ -20,8 +20,8 @@
 */ 
 package zmq;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import com.kactech.jeromq.ArrayDeque;
+import com.kactech.jeromq.Deque;
 
 public class XPub extends SocketBase {
 
